@@ -269,6 +269,8 @@ class QubitRegister
   void ApplyT(unsigned const qubit);
   void ApplyToffoli(unsigned const qubit1, unsigned const qubit2, unsigned const qubit3);
   void ApplyHadamard(unsigned const qubit);
+  void ApplyS(unsigned const qubit);
+  void ApplyPhase(unsigned const qubit, BaseType theta);
 
   void ApplyCRotationX(unsigned const control_qubit, unsigned const target_qubit,
                        BaseType theta);

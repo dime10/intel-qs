@@ -470,6 +470,46 @@ void QubitRegister<Type>::ApplyT(unsigned const qubit)
 
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/// @brief Apply S gate
+/// @param qubit index of the involved qubit
+///
+/// Explicitly, the gate corresponds to the 2x2 matrix:\n
+///     | 1    0 |\n
+///     | 0    i |
+template <class Type>
+void QubitRegister<Type>::ApplyS(unsigned const qubit)
+{
+  iqs::TinyMatrix<Type, 2, 2, 32> s;
+  s(0, 0) = Type(1.0, 0.0);
+  s(0, 1) = Type(0.0, 0.0);
+  s(1, 0) = Type(0.0, 0.0);
+  s(1, 1) = Type(0.0, 1.0);
+  Apply1QubitGate(qubit, s, GateSpec1Q::S);
+
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/// @brief Apply Phase gate
+/// @param qubit index of the involved qubit
+///
+/// Explicitly, the gate corresponds to the 2x2 matrix:\n
+///     | 1               0            |\n
+///     | 0    cos(theta)+i*sin(theta) |
+template <class Type>
+void QubitRegister<Type>::ApplyPhase(unsigned const qubit, BaseType theta)
+{
+  iqs::TinyMatrix<Type, 2, 2, 32> p;
+  p(0, 0) = Type(1.0, 0.0);
+  p(0, 1) = Type(0.0, 0.0);
+  p(1, 0) = Type(0.0, 0.0);
+  p(1, 1) = Type(cos(theta), sin(theta));
+  Apply1QubitGate(qubit, p, GateSpec1Q::Phase);
+
+}
+
 template class QubitRegister<ComplexSP>;
 template class QubitRegister<ComplexDP>;
 

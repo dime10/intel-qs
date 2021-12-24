@@ -11,7 +11,7 @@ enum class GateSpec1Q {
   Hadamard=0, 
   RotationX, RotationY, RotationZ, 
   PauliX, PauliY, PauliZ,
-  T, 
+  T, S, Phase,
   None
 };
 
